@@ -35,10 +35,14 @@ abbr_dict = {'ARI': 'Arizona Cardinals',
         }
 
 
-def humanRead(filepath):
-    with open(filepath, 'r+') as f :
+def humanRead(filepath, saveIt=False):
+    with open(filepath, 'r+') as f : 
         jsObj= json.loads(f.read())
-        print(json.dumps(jsObj, sort_keys=True, indent= 4))       # This gives us nice indentation and lets us peruse json files
+        if saveIt:
+            with open("hum_read_result.txt", 'w') as resultFile:
+                resultFile.write(json.dumps(jsObj, sort_keys=True, indent= 4))
+        else:
+            print(json.dumps(jsObj, sort_keys=True, indent= 4))       # This gives us nice indentation and lets us peruse json files
 
 
 class gameParser:
